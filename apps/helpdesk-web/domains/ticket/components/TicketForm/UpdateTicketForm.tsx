@@ -49,12 +49,7 @@ export const ApplyChangesActionBar = ({ handleSave, isLoading, form }) => {
                     const { property, details, placeClassifier, categoryClassifier, deadline } = getFieldsValue(REQUIRED_TICKET_FIELDS)
                     const propertyMismatchError = getFieldError('property').find((error)=>error.includes(AddressNotSelected))
 
-                    const disabledCondition = !property
-                        || !details
-                        || !placeClassifier
-                        || !categoryClassifier
-                        || !!propertyMismatchError
-                        || (isRequiredDeadline && !deadline)
+                    const disabledCondition = (isRequiredDeadline && !deadline)
                         || ticketSettingLoading
 
                     return (
