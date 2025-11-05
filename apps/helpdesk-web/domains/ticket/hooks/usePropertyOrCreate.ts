@@ -1,9 +1,11 @@
-import { type Property as PropertyType, type AddressMetaFieldInput, PropertyTypeType } from '@app/condo/schema'
+import { PropertyTypeType } from '@app/pass/condoSchema'
 import { useCallback, useEffect, useState } from 'react'
 
 import { useOrganization } from '@open-condo/next/organization'
 
 import { Property } from '@condo/domains/property/utils/clientSchema'
+
+import type { Property as PropertyType, AddressMetaFieldInput } from '@app/condo/schema'
 
 interface UsePropertyOrCreateResult {
     property: PropertyType | null
@@ -30,7 +32,7 @@ const createMinimalAddressMeta = (address: string): AddressMetaFieldInput => {
 /**
  * Hook that fetches the first property for the current organization.
  * If no property exists, creates a minimal property with required fields.
- * 
+ *
  * @returns {UsePropertyOrCreateResult} Object containing property, loading state, error, and refetch function
  */
 export const usePropertyOrCreate = (): UsePropertyOrCreateResult => {
@@ -72,12 +74,17 @@ export const usePropertyOrCreate = (): UsePropertyOrCreateResult => {
                 // Create minimal property if none exists
                 const defaultAddress = 'Default Property'
                 const newProperty = await createProperty({
+                    name: defaultAddress,
                     organization: { connect: { id: organizationId } },
                     type: PropertyTypeType.Building,
                     address: defaultAddress,
                     addressMeta: createMinimalAddressMeta(defaultAddress),
                 })
-                setProperty(newProperty)
+
+                const { data } = await refetchProperties()
+                const existingProperties = data?.objs ?? []
+
+                setProperty(existingProperties[0])
             }
         } catch (err) {
             setError(err instanceof Error ? err : new Error('Failed to fetch or create property'))
