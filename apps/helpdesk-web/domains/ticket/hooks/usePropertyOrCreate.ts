@@ -1,11 +1,9 @@
-import { PropertyTypeType } from '@app/pass/condoSchema'
+import { Property as PropertyType, AddressMetaFieldInput, PropertyTypeType } from '@app/condo/schema'
 import { useCallback, useEffect, useState } from 'react'
 
 import { useOrganization } from '@open-condo/next/organization'
 
 import { Property } from '@condo/domains/property/utils/clientSchema'
-
-import type { Property as PropertyType, AddressMetaFieldInput } from '@app/condo/schema'
 
 interface UsePropertyOrCreateResult {
     property: PropertyType | null
