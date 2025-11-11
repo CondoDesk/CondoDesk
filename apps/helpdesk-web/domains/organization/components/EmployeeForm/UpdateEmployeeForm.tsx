@@ -54,7 +54,6 @@ export const UpdateEmployeeForm: React.FC = () => {
     const EmailLabel = intl.formatMessage({ id: 'field.EMail' })
     const ExamplePhoneMsg = intl.formatMessage({ id: 'example.Phone' })
     const ExampleEmailMsg = intl.formatMessage({ id: 'example.Email' })
-    const SpecializationsLabel = intl.formatMessage({ id: 'employee.Specializations' })
     const PositionLabel = intl.formatMessage({ id: 'employee.Position' })
     const UpdateEmployeeMessage = intl.formatMessage({ id: 'employee.UpdateTitle' })
     const ErrorMessage = intl.formatMessage({ id: 'errors.LoadingError' })
@@ -145,12 +144,6 @@ export const UpdateEmployeeForm: React.FC = () => {
     const error = employeeError || employeeRolesError
     const loading = employeeLoading || employeeRolesLoading
 
-    const specializationsFormItemProps = {
-        name: 'specializations',
-        label: SpecializationsLabel,
-        validateFirst: true,
-        ...INPUT_LAYOUT_PROPS,
-    }
 
     const specializationsSelectProps = {
         search: searchClassifers,
@@ -253,31 +246,6 @@ export const UpdateEmployeeForm: React.FC = () => {
                                                     </Form.Item>
                                                 </Col>
                                             }
-                                            <Col span={24}>
-                                                <Form.Item noStyle dependencies={['role']}>
-                                                    {
-                                                        ({ getFieldValue })=> {
-                                                            const role = getFieldValue('role')
-                                                            const selectedRole = find(employeeRoles, { id: role })
-
-                                                            if (get(selectedRole, 'canBeAssignedAsExecutor'))
-                                                                return (
-                                                                    <Col span={24}>
-                                                                        <GraphQlSearchInputWithCheckAll
-                                                                            checkAllFieldName='hasAllSpecializations'
-                                                                            checkAllInitialValue={initialValues.hasAllSpecializations}
-                                                                            selectFormItemProps={specializationsFormItemProps}
-                                                                            selectProps={specializationsSelectProps}
-                                                                            CheckAllMessage={CheckAllMessage}
-                                                                            checkBoxOffset={8}
-                                                                            form={form}
-                                                                        />
-                                                                    </Col>
-                                                                )
-                                                        }
-                                                    }
-                                                </Form.Item>
-                                            </Col>
                                         </Row>
                                     </Col>
                                     <Col span={24}>

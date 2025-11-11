@@ -56,7 +56,7 @@ export const CreateEmployeeForm: React.FC = () => {
     const PositionLabel = intl.formatMessage({ id: 'employee.Position' })
     const PhoneLabel = intl.formatMessage({ id: 'Phone' })
     const EmailLabel = intl.formatMessage({ id: 'Email' })
-    const SpecializationsLabel = intl.formatMessage({ id: 'employee.Specializations' })
+
     const RoleLabel = intl.formatMessage({ id: 'employee.Role' })
     const ExamplePhoneMsg = intl.formatMessage({ id: 'example.Phone' })
     const ExampleEmailMsg = intl.formatMessage({ id: 'example.Email' })
@@ -107,12 +107,6 @@ export const CreateEmployeeForm: React.FC = () => {
         return () => classifiersLoader.clear()
     }, [])
 
-    const specializationsFormItemProps = useMemo(() => ({
-        name: 'specializations',
-        label: SpecializationsLabel,
-        validateFirst: true,
-        ...INPUT_LAYOUT_PROPS,
-    }), [SpecializationsLabel])
 
     const specializationsSelectProps = useMemo(() => ({
         search: searchClassifers,
@@ -182,30 +176,6 @@ export const CreateEmployeeForm: React.FC = () => {
                                                         <Input />
                                                     </Form.Item>
                                                 </Col>
-                                                <Form.Item noStyle dependencies={['role']}>
-                                                    {
-                                                        ({ getFieldsValue }) => {
-                                                            const { role } = getFieldsValue(['role'])
-                                                            const selectedRole = find(employeeRoles, { id: role })
-
-                                                            return (
-                                                                get(selectedRole, 'canBeAssignedAsExecutor') && (
-                                                                    <Col span={24}>
-                                                                        <GraphQlSearchInputWithCheckAll
-                                                                            checkAllFieldName='hasAllSpecializations'
-                                                                            checkAllInitialValue={true}
-                                                                            selectFormItemProps={specializationsFormItemProps}
-                                                                            selectProps={specializationsSelectProps}
-                                                                            CheckAllMessage={CheckAllMessage}
-                                                                            checkBoxOffset={8}
-                                                                            form={form}
-                                                                        />
-                                                                    </Col>
-                                                                )
-                                                            )
-                                                        }
-                                                    }
-                                                </Form.Item>
                                                 <Col span={24}>
                                                     <Form.Item
                                                         name='phone'
