@@ -283,7 +283,7 @@ export const CreateTicketForm: React.FC = () => {
         }
 
         return ticket
-    }, [createTicketAction, organization.id, getCompletedNotification, client, getPaymentLink, intl, createInvoiceAction, getPublishTicketInvoices, requestFeature])
+    }, [createTicketAction, organization.id, getCompletedNotification, client, getPaymentLink, intl, createInvoiceAction, getPublishTicketInvoices, requestFeature, property])
 
     const initialValues = useMemo(() => ({
         ...initialValuesFromQuery,
