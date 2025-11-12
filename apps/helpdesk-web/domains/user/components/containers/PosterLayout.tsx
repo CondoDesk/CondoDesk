@@ -2,7 +2,7 @@ import { Image } from 'antd'
 import React, { useCallback } from 'react'
 import ProgressiveImage from 'react-progressive-image'
 
-import { LayoutWithPoster, PosterProps as DefaultPosterProps } from '@condo/domains/common/components/containers/LayoutWithPoster'
+import { LayoutWithPoster, PosterProps as DefaultPosterProps } from '@helpdesk-web/domains/common/components/containers/LayoutWithPoster'
 
 import styles from './PosterLayout.module.css'
 

@@ -4,7 +4,7 @@ import React from 'react'
 import { useIntl } from '@open-condo/next/intl'
 import { Typography } from '@open-condo/ui'
 
-import { PosterProps } from '@condo/domains/common/components/containers/LayoutWithPoster'
+import { PosterProps } from '@helpdesk-web/domains/common/components/containers/LayoutWithPoster'
 
 import styles from './AuthPoster.module.css'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { LayoutWithPoster } from '@condo/domains/common/components/containers/LayoutWithPoster'
+import { LayoutWithPoster } from '@helpdesk-web/domains/common/components/containers/LayoutWithPoster'
 
 import { AuthPoster } from './AuthPoster'
 
